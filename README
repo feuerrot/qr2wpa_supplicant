@@ -1,0 +1,9 @@
+Das ist ein Programm, um einen Barcode mit Informationen zum Internetzugang zu lesen und die Daten in die Konfigurationsdatei von wpa_supplicant zu übernehmen.
+
+Total toll, denn es tut nur das und nichts anderes. Insbesondere Fehlerbehandlung oder anderes findet nicht statt.
+
+Benötigt werden:
+* zbar-tools
+* python-zbar
+
+Howto: Programm ausführen, Barcode mit der Webcam scannen, fertig.
