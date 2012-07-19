@@ -5,6 +5,20 @@ import re
 import zbar
 import sys
 
+wstemplate = """network = {
+	ssid="%s"
+	psk="%s" 
+}
+"""
+
+if len(sys.argv) > 2:
+	print "Der Ort der Konfigurationsdatei von wpa_supplicant ist - wenn überhaupt - das einzige Argument!"
+	exit(1)
+elif len(sys.argv) == 2:
+	wsconf = sys.argv[1]
+else:
+	wsconf = '/etc/wpa_supplicant/wpa_supplicant.conf'
+
 reessid = re.compile(r"S:(\w+)")
 repw    = re.compile(r"P:(\w+)")
 
@@ -23,10 +37,6 @@ for symbol in proc.results:
 		pw = matchpw.group(1)
 		break
 
-spc = open('/etc/wpa_supplicant/wpa_supplicant.conf', 'a')
-spc.write("""network = {
-	ssid="%s"
-	psk="%s"
-}
-""" % (essid, pw))
+spc = open(wsconf, 'a')
+spc.write(wstemplate % (essid, pw))
 spc.close()
